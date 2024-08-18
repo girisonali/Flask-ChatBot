@@ -7,37 +7,78 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #f0f4f8, #dce3e5);
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             height: 100vh;
+            overflow: hidden; /* Prevent horizontal scrolling */
+            background: linear-gradient(135deg, #333, #666); /* Initial background gradient */
+            background-size: 400% 400%; /* Set the size for animation */
+            animation: gradientAnimation 15s ease infinite; /* Apply animation */
         }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .navbar {
+            background-color: #333; /* Dark grey background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar .icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .navbar span {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow: hidden;
+        }
+
         .chat-container {
+            flex: 1;
             width: 100%;
             max-width: 600px;
-            margin: 20px;
+            margin: 20px auto;
             padding: 20px;
-            background: #ffffff;
+            background: #ffffff; /* White background for the chat container */
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
-            height: 80vh;
-            max-height: 600px;
+            overflow-y: auto; /* Allow vertical scrolling */
+            position: relative; /* Ensure it is above the animated background */
         }
+
         .chat-header {
             text-align: center;
             margin-bottom: 20px;
             font-size: 24px;
             color: #ffffff;
-            background: linear-gradient(135deg, #007bff, #0056b3);
+            background: #333; /* Dark grey background for header */
             border-radius: 8px;
             padding: 10px;
-            border-bottom: 2px solid #0056b3;
+            border-bottom: 2px solid #000; /* Black border */
         }
+
         .messages-container {
             flex: 1;
             overflow-y: auto;
@@ -45,8 +86,9 @@
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            background-color: #f9f9f9; /* Light background for messages */
+            background-color: #f1f1f1; /* Light grey background for messages */
         }
+
         .message {
             margin: 10px 0;
             padding: 10px;
@@ -54,18 +96,21 @@
             max-width: 80%;
             word-wrap: break-word;
         }
+
         .user-message {
-            background: #e1f5fe;
-            color: #0277bd;
+            background: #e0e0e0; /* Light grey for user messages */
+            color: #000; /* Black text */
             text-align: right;
             align-self: flex-end;
         }
+
         .bot-message {
-            background: #e8f5e9;
-            color: #2e7d32;
+            background: #bdbdbd; /* Medium grey for bot messages */
+            color: #000; /* Black text */
             text-align: left;
             align-self: flex-start;
         }
+
         textarea {
             width: calc(100% - 22px);
             height: 60px;
@@ -77,46 +122,108 @@
             box-sizing: border-box;
             background-color: #ffffff; /* White background for the textarea */
         }
+
         button {
             width: 100%;
             padding: 10px;
             border-radius: 5px;
             border: none;
-            background-color: #007bff;
+            background-color: #333; /* Dark grey background for button */
             color: white;
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         button:hover {
-            background-color: #0056b3;
+            background-color: #000; /* Black background on hover */
         }
-        @media (max-width: 768px) {
-            .chat-container {
-                width: 90%;
-                height: 100vh;
-                max-height: none;
-            }
-            .message {
-                max-width: 100%;
-            }
+
+        .project-description {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff; /* White background for project description */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            margin-bottom: 70px; /* Space for the bottom navbar */
+        }
+
+        .project-description h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #333; /* Dark grey text for the heading */
+        }
+
+        .project-description p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333; /* Dark grey text for paragraph */
+        }
+
+        .bottom-navbar {
+            background-color: #333; /* Dark grey background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .bottom-navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .bottom-navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .bottom-navbar .fa {
+            margin-right: 5px; /* Space between icon and text */
         }
     </style>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">Chatbot</div>
-        <div class="messages-container">
-            {% if user_message %}
-                <div class="message user-message"><strong>You:</strong> {{ user_message }}</div>
-                <div class="message bot-message"><strong>Bot:</strong> {{ bot_message }}</div>
-            {% endif %}
+    <nav class="navbar">
+        <div class="icon">🤖</div>
+        <span>Chatbot</span>
+    </nav>
+    <div class="main-content">
+        <div class="chat-container">
+            <div class="chat-header">Chatbot</div>
+            <div class="messages-container">
+                {% if user_message %}
+                    <div class="message user-message"><strong>You:</strong> {{ user_message }}</div>
+                    <div class="message bot-message"><strong>Bot:</strong> {{ bot_message }}</div>
+                {% endif %}
+            </div>
+            <form method="post">
+                <textarea name="message" placeholder="Type your message here..." required></textarea>
+                <button type="submit">Send</button>
+            </form>
         </div>
-        <form method="post">
-            <textarea name="message" placeholder="Type your message here..." required></textarea>
-            <button type="submit">Send</button>
-        </form>
+        <div class="project-description">
+            <h2>Project Description</h2>
+            <p>
+                This chatbot project aims to provide users with a seamless and interactive experience. The chatbot is designed to understand and respond to user queries effectively, offering helpful information and assistance. It is built with user-friendliness in mind, ensuring a smooth interaction process.
+            </p>
+        </div>
     </div>
+    <nav class="bottom-navbar">
+        <a href="https://github.com/girisonali/Flask-ChatBot">
+            <i class="fa fa-github"></i>Visit GitHub
+        </a>
+        <a href="path/to/your-document.pdf" target="_blank">PDF</a>
+        <a href="path/to/your-presentation.ppt" target="_blank">PPT</a>
+    </nav>
 </body>
 </html>
 
