@@ -1,0 +1,30 @@
+{
+    "hi": ["Hello there!", "Hi!", "Hey! How can I help you today?"],
+    "how are you": ["I'm doing great, thanks for asking!", "I'm just a bot, but I'm doing well.", "I'm here and ready to chat! How about you?"],
+    "what is your name": ["I’m a chatbot created by you!", "I don’t have a name, but you can call me Chatbot.", "I’m just your friendly chatbot."],
+    "tell me about this project": [
+        "This project is a simple chatbot web application created using Flask.",
+        "This chatbot is built with Python and Flask, providing a basic conversational interface.",
+        "The chatbot uses Flask to handle web requests and simple rule-based responses to interact with users."
+    ],
+    "how this project made": [
+        "This project was made by writing a Python script using Flask for the web framework.",
+        "We used Flask to create a web server that interacts with users through a web interface.",
+        "The chatbot logic is implemented in Python, and the web interface is created using HTML and CSS."
+    ],
+    "what are the technologies were used": [
+        "This project uses Python for the backend logic and Flask for the web framework.",
+        "The front end is built with HTML and CSS to create a user-friendly interface.",
+        "The chatbot is a simple rule-based system that provides responses based on predefined patterns."
+    ],
+    "tell me a joke": ["Why don't scientists trust atoms? Because they make up everything!", "What do you call fake spaghetti? An impasta!", "Why was the math book sad? It had too many problems."],
+    "bye": ["Goodbye! Have a great day!", "See you later!", "Bye! Come back if you want to chat more."],
+    "what is python": ["Python is a high-level, interpreted programming language known for its readability and simplicity.", "Python is a popular programming language that is easy to learn and use for various types of projects."],
+    "variables in python": ["In Python, variables are used to store data values. You don't need to declare the data type of a variable explicitly.", "A variable in Python can be created by simply assigning a value to a name, e.g., x = 10."],
+    "what are data types in python": ["Python supports various data types such as integers, floats, strings, and lists.", "Some common data types in Python include int, float, str (string), and list."],
+    "loops in python": ["Python has for and while loops to iterate over sequences and execute code repeatedly.", "A for loop in Python is used to iterate over a sequence (like a list or range), and a while loop continues to execute as long as a condition is true."],
+    "functions in python": ["Functions in Python are defined using the def keyword followed by the function name and parentheses.", "Functions in Python are blocks of code designed to perform a specific task and can be called by their name with optional arguments."],
+    "what are conditional statements in python": ["Python uses if, elif, and else statements to perform conditional operations.", "Conditional statements in Python help to execute different blocks of code based on certain conditions being true or false."],
+    "who are the group members of this project": ["Sonali, Isha, Ayan, Ameen and Sayyam are the members of this project!"],
+    "default": ["I'm not sure how to respond to that.", "Can you please rephrase?", "I didn’t quite get that."]
+}
