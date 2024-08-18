@@ -14,12 +14,18 @@ responses = load_responses()
 def get_response(user_input):
     user_input = user_input.lower()
     print(f"User input: {user_input}")  # Debugging line
-    for key in responses:
-        if key in user_input:
-            response = random.choice(responses[key])
-            print(f"Matched response: {response}")  # Debugging line
-            return response
-    default_response = random.choice(responses["default"])
+    
+    # Iterate over each category in responses
+    for category, data in responses.items():
+        if isinstance(data, dict):  # Check if data is a dictionary
+            for key, replies in data.items():
+                if key in user_input:
+                    response = random.choice(replies)
+                    print(f"Matched response: {response}")  # Debugging line
+                    return response
+    
+    # Default response if no match is found
+    default_response = random.choice(responses.get("default", ["I'm not sure how to respond to that."]))
     print(f"Default response: {default_response}")  # Debugging line
     return default_response
 
